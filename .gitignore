@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Rust
+target/
+
+# 에디터 · OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 로컬 테스트용 입출력
+input.txt
+output.txt
