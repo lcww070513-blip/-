@@ -1,4 +1,5 @@
 import type { Company } from './types';
+import { extraCompanies } from './companies-extra';
 
 /**
  * 기업 분석 데이터.
@@ -21,7 +22,7 @@ export const companyDisclaimer = {
 /** 국내 상장사는 전자공시시스템에서 사업보고서를 확인할 수 있습니다. */
 const dart = { label: '금융감독원 전자공시시스템(DART)에서 사업보고서 확인', url: 'https://dart.fss.or.kr/' };
 
-export const companies: Company[] = [
+const baseCompanies: Company[] = [
   // ── 메모리·IDM / 파운드리 ──────────────────────────────
   {
     id: 'samsung-ds',
@@ -1299,3 +1300,10 @@ export const companies: Company[] = [
 ];
 
 export const companyCategories = ['메모리·IDM', '파운드리', '팹리스', '장비', '소재·부품', '후공정·테스트'] as const;
+
+/** 기본 목록과 소재·부품·팹리스 목록을 분류 순서대로 합쳐 내보냅니다. */
+export const companies: Company[] = [...baseCompanies, ...extraCompanies].sort(
+  (a, b) =>
+    companyCategories.indexOf(a.category) - companyCategories.indexOf(b.category) ||
+    a.name.localeCompare(b.name, 'ko'),
+);
